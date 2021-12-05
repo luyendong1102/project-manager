@@ -2,18 +2,61 @@
 <html lang="en">
 
 <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mini Server To Manage Project</title>
-        <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-                integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+                integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+                crossorigin="anonymous">
+
 </head>
 
 <body>
         <div style="padding: 10px;">
                 <div>
-                        <h3>
-                                API Documents
-                        </h3>
+                        <h3>API Document</h3>
+                        <p>Mọi API đều bắt đầu từ tiền tố <code>/api/v1/*</code>
+                        </p>
+                        <p>Ví dụ : <code>https://host.net/api/v1/user/register</code></p>
+                        <p>Các token để xác định danh tính được lưu trong header với khóa là 'key'</p>
+                        <p>Các token được khởi tạo mới khi login và có thời hạn trong vòng 3 ngày kể từ khi nó được tạo
+                                ra, Server không có trách nhiệm lưu lại token khi nó được tạo, token có giá trị như
+                                khóa, không được để lộ token, khi muốn đăng xuất hãy xóa token được nhận. Server là
+                                stateless vì thế không có session cho mỗi lần sử dụng</p>
+                </div>
+                <div>
+                        <h4>Authentication</h4>
+                        <span class="badge badge-warning">POST</span> <span class="badge badge-warning">EveryOne</span>
+                        <code>/api/auth</code>
+                        <p>Mỗi một tài khoản khi tạo sẽ có một username riêng biệt và password. "username" và "password"
+                                là thuộc tính được gửi khi muốn đăng nhập, phương thúc : POST</p>
+                </div>
+                <!-- USER -->
+                <div>
+                        <h4>User</h4>
+                        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
+                        <code>/user</code>
+                        <p>Lấy toàn bộ danh sách nhân viên. Chỉ tài khoản có role QUANLY mới có quyền truy cập</p>
+                        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
+                        <code>/user/upgrage/{id}</code>
+                        <p>Nâng cấp tài khoản có id {id} lên QUANLY. Chỉ có tài khoản role QUANLY mới có quyền truy cập
+                        </p>
+                        <span class="badge badge-warning">POST</span> <span class="badge badge-warning">EveryOne</span>
+                        <code>/user/register</code>
+                        <p>Đăng ký tài khoản mới. Ai cũng có thể truy cập</p>
+                        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">EveryOne</span>
+                        <code>/user/self</code>
+                        <p>Xem thông tin tài khoản của mình. Chỉ chủ tài khoản mới có quyền truy cập</p>
+                        <span class="badge badge-warning">POST</span> <span class="badge badge-warning">EveryOne</span>
+                        <code>/user/changepassword</code>
+                        <p>Đổi mật khẩu. Chỉ chủ tài khoản mới có quyền truy cập</p>
+                        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
+                        <code>/user/disable</code>
+                        <p>Hủy kích hoạt tài khoản, liên hệ luyendong để mở lại. Chỉ chủ tài khoản mới có quyền truy cập
+                        </p>
+                        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
+                        <code>/user/find?p=</code>
+                        <p>Tìm thông tin tài khoản với tham số p. Ai cũng có thể truy cập</p>
                 </div>
         </div>
         <div>
