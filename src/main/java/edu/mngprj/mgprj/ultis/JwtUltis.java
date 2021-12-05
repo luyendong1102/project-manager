@@ -12,7 +12,6 @@ import java.util.Date;
 @Slf4j
 public class JwtUltis {
 
-    private final long expire_time = 9999999999999999L;
     @Value("${jwt.secret.key}")
     private String secretkey;
 
@@ -33,6 +32,7 @@ public class JwtUltis {
     }
 
     public String genToken(UserModded user) {
+        long expire_time = 86400000L * 3;
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())

@@ -53,7 +53,7 @@ public class AppSecurity extends WebSecurityConfigurerAdapter {
                 .cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/api/auth", "/api/v1/user/register", "/home").permitAll()
+                .antMatchers("/api/auth", "/api/v1/user/register", "/home", "/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(getJwtFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -90,4 +90,7 @@ public class UserService {
         return userRepository.save(uuser);
     }
 
+    public List<User> findUser(String input) {
+        return userRepository.findUserByString(input);
+    }
 }

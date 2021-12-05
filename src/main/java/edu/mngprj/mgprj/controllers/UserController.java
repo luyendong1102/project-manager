@@ -79,4 +79,13 @@ public class UserController {
         );
     }
 
+    @GetMapping("/find")
+    public ResponseEntity<ResponseTemplate> findUser(@RequestParam String p) {
+        return ResponseEntity.ok(
+                new ResponseTemplate(
+                        200, "Your result", userService.findUser(p)
+                )
+        );
+    }
+
 }
