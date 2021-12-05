@@ -16,14 +16,14 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Table(name = "user")
+@Table(name = "uuser")
 public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "namee")
     private String name;
 
     @Column(name = "phone")

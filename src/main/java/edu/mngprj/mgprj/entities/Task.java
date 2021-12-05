@@ -24,7 +24,7 @@ public class Task implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "namee")
     private String name;
 
     @Column(name = "deadline")
