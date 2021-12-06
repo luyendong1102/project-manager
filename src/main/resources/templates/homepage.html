@@ -2,69 +2,166 @@
 <html lang="en">
 
 <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Mini Server To Manage Project</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-                integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-                crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Mini Server To Manage Project</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+          rel="stylesheet">
 
+    <style>
+        .api-express {
+            padding : 0px 0px 10px 30px;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
 </head>
 
 <body>
-        <div style="padding: 10px;">
-                <div>
-                        <h3>API Document</h3>
-                        <p>Mọi API đều bắt đầu từ tiền tố <code>/api/v1/*</code>
-                        </p>
-                        <p>Ví dụ : <code>https://host.net/api/v1/user/register</code></p>
-                        <p>Các token để xác định danh tính được lưu trong header với khóa là 'key'</p>
-                        <p>Các token được khởi tạo mới khi login và có thời hạn trong vòng 3 ngày kể từ khi nó được tạo
-                                ra, Server không có trách nhiệm lưu lại token khi nó được tạo, token có giá trị như
-                                khóa, không được để lộ token, khi muốn đăng xuất hãy xóa token được nhận. Server là
-                                stateless vì thế không có session cho mỗi lần sử dụng</p>
-                </div>
-                <div>
-                        <h4>Authentication</h4>
-                        <span class="badge badge-warning">POST</span> <span class="badge badge-warning">EveryOne</span>
-                        <code>/api/auth</code>
-                        <p>Mỗi một tài khoản khi tạo sẽ có một username riêng biệt và password. "username" và "password"
-                                là thuộc tính được gửi khi muốn đăng nhập, phương thúc : POST</p>
-                </div>
-                <!-- USER -->
-                <div>
-                        <h4>User</h4>
-                        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
-                        <code>/user</code>
-                        <p>Lấy toàn bộ danh sách nhân viên. Chỉ tài khoản có role QUANLY mới có quyền truy cập</p>
-                        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
-                        <code>/user/upgrage/{id}</code>
-                        <p>Nâng cấp tài khoản có id {id} lên QUANLY. Chỉ có tài khoản role QUANLY mới có quyền truy cập
-                        </p>
-                        <span class="badge badge-warning">POST</span> <span class="badge badge-warning">EveryOne</span>
-                        <code>/user/register</code>
-                        <p>Đăng ký tài khoản mới. Ai cũng có thể truy cập</p>
-                        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">EveryOne</span>
-                        <code>/user/self</code>
-                        <p>Xem thông tin tài khoản của mình. Chỉ chủ tài khoản mới có quyền truy cập</p>
-                        <span class="badge badge-warning">POST</span> <span class="badge badge-warning">EveryOne</span>
-                        <code>/user/changepassword</code>
-                        <p>Đổi mật khẩu. Chỉ chủ tài khoản mới có quyền truy cập</p>
-                        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
-                        <code>/user/disable</code>
-                        <p>Hủy kích hoạt tài khoản, liên hệ luyendong để mở lại. Chỉ chủ tài khoản mới có quyền truy cập
-                        </p>
-                        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
-                        <code>/user/find?p=</code>
-                        <p>Tìm thông tin tài khoản với tham số p. Ai cũng có thể truy cập</p>
-                </div>
-        </div>
-        <div>
+<div style="padding: 20px;">
+    <div>
+        <h3>API Document</h3>
+        <p>Mọi API đều bắt đầu từ tiền tố <code>/api/v1/*</code>
+        </p>
+        <p>Ví dụ : <code>https://host.net/api/v1/user/register</code></p>
+        <p>Các token để xác định danh tính được lưu trong header với thuộc tính 'key'</p>
+        <p>Các token được khởi tạo mới khi login và có thời hạn trong vòng 3 ngày kể từ khi nó được tạo
+            ra, Server không có trách nhiệm lưu lại token khi nó được tạo, token có giá trị như
+            khóa, không được để lộ token, khi muốn đăng xuất hãy xóa token được nhận. Server là
+            stateless vì thế không có session cho mỗi lần sử dụng</p>
+    </div>
 
-        </div>
-        <script crossorigin="anonymous"
-                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-                src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Authen -->
+    <div class="api-express">
+        <h4>Authentication</h4>
+        <span class="badge badge-warning">POST</span> <span class="badge badge-warning">EveryOne</span>
+        <code>/api/auth</code>
+        <p>Mỗi một tài khoản khi tạo sẽ có một username riêng biệt và password. "username" và "password"
+            là thuộc tính được gửi khi muốn đăng nhập, phương thúc : POST</p>
+    </div>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <!-- USER -->
+    <div class="api-express">
+        <h4>User</h4>
+        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/user/all</code>
+        <p>Lấy toàn bộ danh sách nhân viên. Chỉ tài khoản có role QUANLY mới có quyền truy cập</p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/user/upgrage/{id}</code>
+        <p>Nâng cấp tài khoản có id {id} lên QUANLY. Chỉ có tài khoản role QUANLY mới có quyền truy cập
+        </p>
+
+        <span class="badge badge-warning">POST</span> <span class="badge badge-warning">EveryOne</span>
+        <code>/user/register</code>
+        <p>Đăng ký tài khoản mới. Ai cũng có thể truy cập</p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
+        <code>/user</code>
+        <p>Xem thông tin tài khoản của mình. Chỉ chủ tài khoản mới có quyền truy cập</p>
+
+        <span class="badge badge-warning">POST</span> <span class="badge badge-warning">EveryOne</span>
+        <code>/user/changepassword</code>
+        <p>Đổi mật khẩu. Chỉ chủ tài khoản mới có quyền truy cập</p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
+        <code>/user/disable</code>
+        <p>Hủy kích hoạt tài khoản, liên hệ luyendong để mở lại. Chỉ chủ tài khoản mới có quyền truy cập
+        </p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
+        <code>/user/find?p=</code>
+        <p>Tìm thông tin tài khoản với tham số p. Ai cũng có thể truy cập</p>
+    </div>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <!-- PROJECT -->
+    <div class="api-express">
+        <h3>Project</h3>
+        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/project</code>
+        <p>Trả về thông tin của tất cả project mà tài khoản quản lý</p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/project/{id}</code>
+        <p>Trả về thông của project có id mà tài khoản quản lý</p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/project/find?p=</code>
+        <p>Tim project mà chưa tham số p</p>
+
+        <span class="badge badge-warning">POST</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/</code>
+        <p>Tạo mới project hoặc chỉnh sửa với người quản lý là người tạo, Yêu cầu object Project</p>
+
+        <span class="badge badge-danger">DELETE</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/project/{id}</code>
+        <p>Xóa project với người quản lý</p>
+    </div>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <!-- TASKS -->
+    <div class="api-express">
+        <h3>Task</h3>
+        <span class="badge badge-warning">POST</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/task/create</code>
+        <p>Tạo mới task</p>
+
+        <span class="badge badge-success">PUT</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/task/update</code>
+        <p>Cập nhật thông tin task</p>
+
+        <span class="badge badge-danger">POST</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/task/delete/{id}</code>
+        <p>Xóa task chỉ chủ task</p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/task/project/{id}</code>
+        <p>Lấy tất cả các task từ project mình quản lý</p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
+        <code>/task/self</code>
+        <p>Các task của mình</p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
+        <code>/task/single/{id}</code>
+        <p>Lấy ra một task có {id} mà liên quan đến mình</p>
+
+        <span class="badge badge-primary">GET</span> <span class="badge badge-warning">EveryOne</span>
+        <code>/task/find</code>
+        <p style="color:#DC143C">ERROR</p>
+
+        <span class="badge badge-danger">POST</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/task/assign/{id}</code>
+        <p>Thêm người vào task vào {id} nhận request body là User</p>
+
+        <span class="badge badge-danger">POST</span> <span class="badge badge-danger">QUANLY</span>
+        <code>/task/remove/{id}</code>
+        <p>Xóa người vào task vào {id} nhận request body là User</p>
+    </div>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+</div>
+<div>
+
+</div>
+<script crossorigin="anonymous"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

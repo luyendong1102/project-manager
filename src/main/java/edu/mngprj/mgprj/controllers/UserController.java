@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @Secured("ROLE_QUANLY")
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<ResponseTemplate> getAllUser() {
         return ResponseEntity.ok(
                 new ResponseTemplate(
@@ -51,7 +51,7 @@ public class UserController {
         );
     }
 
-    @GetMapping("/self")
+    @GetMapping
     public ResponseEntity<ResponseTemplate> getSelf() {
         return ResponseEntity.ok(
                 new ResponseTemplate(

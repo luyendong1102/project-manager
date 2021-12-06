@@ -2,6 +2,7 @@ package edu.mngprj.mgprj;
 
 import edu.mngprj.mgprj.repositories.UserRepository;
 import edu.mngprj.mgprj.repositories.UserRoleRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
+@Slf4j
 public class MgprjApplication implements CommandLineRunner {
 
     @Autowired
@@ -24,9 +26,14 @@ public class MgprjApplication implements CommandLineRunner {
 
     }
 
+    // uncomment this if you run this application for the fisrt time, remember create database first !
+    // it supports mysql, postgress, sqlserver , ...
     @Override
     public void run(String... args) throws Exception {
-        // create role
+//        log.info("Project Manager Application Starting Running ... ");
+//        log.info("Hello Developer");
+//        log.info("First time setting");
+//        log.info("creating role");
 //        UserRole admin_test = new UserRole();
 //        admin_test.setId(1L);
 //        admin_test.setRole_name("ROLE_ADMIN_TESTER");
@@ -47,7 +54,7 @@ public class MgprjApplication implements CommandLineRunner {
 //        nhanvien.setRole_name("ROLE_NHANVIEN");
 //        userRoleRepository.save(nhanvien);
 //
-//        // add default account
+//        log.info("Add default account");
 //        User user = new User();
 //        user.setId(1L);
 //        user.set_enable(true);
@@ -70,5 +77,9 @@ public class MgprjApplication implements CommandLineRunner {
 //        user.setUserLogin(userLogin);
 //
 //        userRepository.save(user);
+//
+//        log.info("Default account created");
+//        log.info("Default account :: username : 'admin' / password : '1' . This account has full control to database and this application, be careful with it !");
+
     }
 }

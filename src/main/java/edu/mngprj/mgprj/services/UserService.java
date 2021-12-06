@@ -10,8 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -67,6 +67,7 @@ public class UserService {
         return true;
     }
 
+    @Transactional
     public User changePassword(PasswordChanger pc) throws PasswordNotMatchException {
         UserModded userDetails = (UserModded) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<User> user = userRepository.findByUserLogin(userLoginRepository.findByUserName(userDetails.getUsername()).get());
@@ -82,6 +83,7 @@ public class UserService {
         return ul.getUser();
     }
 
+    @Transactional
     public User disableAccount() {
         UserModded userDetails = (UserModded) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<User> user = userRepository.findByUserLogin(userLoginRepository.findByUserName(userDetails.getUsername()).get());

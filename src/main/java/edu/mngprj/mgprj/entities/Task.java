@@ -33,17 +33,18 @@ public class Task implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "projectid", referencedColumnName = "id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Project project;
 
     @ManyToMany(mappedBy = "tasks")
     @ToString.Exclude
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<User> users;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     @ToString.Exclude
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<TaskDetail> taskDetails;
 
     @Override

@@ -27,7 +27,7 @@ public class TaskDetail implements Serializable {
     @Column(name = "timecommit")
     private Date time;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "userid")
     private User user;
 

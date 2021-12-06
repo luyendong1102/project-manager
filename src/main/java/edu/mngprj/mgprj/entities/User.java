@@ -54,6 +54,7 @@ public class User implements Serializable {
             joinColumns = @JoinColumn(name = "userid"),
             inverseJoinColumns = @JoinColumn(name = "taskid")
     )
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ToString.Exclude
     private Set<Task> tasks;
 
@@ -63,6 +64,7 @@ public class User implements Serializable {
             joinColumns = @JoinColumn(name = "userid"),
             inverseJoinColumns = @JoinColumn(name = "roleid")
     )
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ToString.Exclude
     private Set<UserRole> roles;
 

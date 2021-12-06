@@ -1,6 +1,8 @@
 package edu.mngprj.mgprj.configurations;
 
 import edu.mngprj.mgprj.entities.ResponseTemplate;
+import edu.mngprj.mgprj.exceptions.NotFoundException;
+import edu.mngprj.mgprj.exceptions.NotValidUserException;
 import edu.mngprj.mgprj.exceptions.PasswordNotMatchException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +46,22 @@ public class ApiExceptionHandler {
     public ResponseEntity<ResponseTemplate> uniqueconstrain(Exception e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 new ResponseTemplate(HttpStatus.BAD_REQUEST.value(), "Username must be unique", null)
+        );
+    }
+
+    @ExceptionHandler(NotValidUserException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ResponseTemplate> notvaliduser(Exception e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                new ResponseTemplate(HttpStatus.BAD_REQUEST.value(), "Not valid user", null)
+        );
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ResponseTemplate> notfound(Exception e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                new ResponseTemplate(HttpStatus.BAD_REQUEST.value(), "Cannot find your request", null)
         );
     }
 

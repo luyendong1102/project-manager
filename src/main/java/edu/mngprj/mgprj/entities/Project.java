@@ -1,5 +1,6 @@
 package edu.mngprj.mgprj.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,14 +20,15 @@ public class Project implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "namee")
+    @Column(name = "namee", unique = true)
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "leadid", referencedColumnName = "id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "project")
     @ToString.Exclude
     private Set<Task> tasks;
 
