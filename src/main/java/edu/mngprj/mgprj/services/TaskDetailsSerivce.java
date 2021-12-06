@@ -6,10 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TaskDetailsSerivce {
-
-    @Autowired
-    private TaskDetailsSerivce taskDetailsSerivce;
-
+    
     @Autowired
     private UserRepository userRepository;
 
