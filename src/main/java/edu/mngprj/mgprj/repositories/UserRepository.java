@@ -17,5 +17,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select u from User u where u.name like concat('%',?1,'%') or u.phone like concat('%',?1,'%') or u.id like concat('%',?1,'%')")
     public List<User> findUserByString(String input);
-
+    
 }

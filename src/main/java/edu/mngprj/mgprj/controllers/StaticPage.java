@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller()
 public class StaticPage {
 
-    @GetMapping("/home")
+    @GetMapping("/docs")
     public String home() {
-        return "homepage";
+        return "apidocs";
     }
 
 }

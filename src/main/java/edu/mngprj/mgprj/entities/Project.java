@@ -28,7 +28,7 @@ public class Project implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "project")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     @ToString.Exclude
     private Set<Task> tasks;
 

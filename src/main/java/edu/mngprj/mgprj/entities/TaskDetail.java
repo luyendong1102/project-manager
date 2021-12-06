@@ -1,5 +1,6 @@
 package edu.mngprj.mgprj.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -29,10 +30,12 @@ public class TaskDetail implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "userid")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "taskid")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Task task;
 
     @Override

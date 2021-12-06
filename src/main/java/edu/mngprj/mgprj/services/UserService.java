@@ -2,6 +2,7 @@ package edu.mngprj.mgprj.services;
 
 import edu.mngprj.mgprj.entities.*;
 import edu.mngprj.mgprj.exceptions.PasswordNotMatchException;
+import edu.mngprj.mgprj.repositories.ProjectRrepository;
 import edu.mngprj.mgprj.repositories.UserLoginRepository;
 import edu.mngprj.mgprj.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ProjectRrepository projectRrepository;
 
     public List<User> findAllUser() {
         return userRepository.findAll();
@@ -95,4 +99,5 @@ public class UserService {
     public List<User> findUser(String input) {
         return userRepository.findUserByString(input);
     }
+    
 }

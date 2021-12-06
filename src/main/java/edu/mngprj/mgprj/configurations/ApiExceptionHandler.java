@@ -45,7 +45,7 @@ public class ApiExceptionHandler {
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ResponseTemplate> uniqueconstrain(Exception e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                new ResponseTemplate(HttpStatus.BAD_REQUEST.value(), "Username must be unique", null)
+                new ResponseTemplate(HttpStatus.BAD_REQUEST.value(), "Unique Constrain", null)
         );
     }
 

@@ -10,6 +10,7 @@ import edu.mngprj.mgprj.repositories.ProjectRrepository;
 import edu.mngprj.mgprj.repositories.TaskRepository;
 import edu.mngprj.mgprj.repositories.UserLoginRepository;
 import edu.mngprj.mgprj.repositories.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+@Slf4j
 public class TaskService {
 
     @Autowired
@@ -53,6 +55,8 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
+
+    // TODO : CANNOT DELETE
     @Transactional
     public void deleteTask(Long id) throws NotValidUserException, NotFoundException {
         Optional<Task> task = taskRepository.findById(id);
@@ -67,6 +71,12 @@ public class TaskService {
                 )) {
             throw new NotValidUserException();
         }
+        List<User> users = task.get().getUsers();
+        users.forEach(
+                u -> {
+                    u.getTasks().remove(task.get());
+                }
+        );
         taskRepository.deleteById(task.get().getId());
     }
 
@@ -133,6 +143,7 @@ public class TaskService {
         }
     }
 
+    // TODO : CANNOT FIND
     public List<Task> findTask(String input) {
         User user = getCurrentUser();
         return taskRepository.findTask(input, user, user);
@@ -159,7 +170,9 @@ public class TaskService {
         )) {
             throw new NotFoundException();
         }
-        task.get().getUsers().add(user);
+        User u = userRepository.findById(user.getId()).get();
+        u.getTasks().add(task.get());
+        task.get().getUsers().add(u);
         return taskRepository.save(task.get());
     }
 
@@ -184,7 +197,9 @@ public class TaskService {
         )) {
             throw new NotFoundException();
         }
-        task.get().getUsers().remove(user);
+        User u = userRepository.findById(user.getId()).get();
+        u.getTasks().remove(task.get());
+        task.get().getUsers().remove(u);
         return taskRepository.save(task.get());
     }
 
