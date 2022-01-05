@@ -1,6 +1,5 @@
 package edu.mngprj.mgprj.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -36,7 +35,7 @@ public class Task implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "projectid", referencedColumnName = "id")
-    @JsonManagedReference
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Project project;
 
     @ManyToMany(mappedBy = "tasks")
