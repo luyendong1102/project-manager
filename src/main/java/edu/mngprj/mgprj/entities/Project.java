@@ -1,5 +1,7 @@
 package edu.mngprj.mgprj.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -30,6 +32,7 @@ public class Project implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     @ToString.Exclude
+    @JsonBackReference
     private Set<Task> tasks;
 
 }

@@ -1,5 +1,8 @@
 package edu.mngprj.mgprj;
 
+import edu.mngprj.mgprj.entities.User;
+import edu.mngprj.mgprj.entities.UserLogin;
+import edu.mngprj.mgprj.entities.UserRole;
 import edu.mngprj.mgprj.repositories.UserRepository;
 import edu.mngprj.mgprj.repositories.UserRoleRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +12,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.sql.Date;
+import java.util.HashSet;
 
 @SpringBootApplication
 @Slf4j
