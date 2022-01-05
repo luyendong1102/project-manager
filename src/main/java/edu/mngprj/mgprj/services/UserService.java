@@ -57,6 +57,12 @@ public class UserService {
         return user.get();
     }
 
+    public Set<UserRole> getRoles() {
+        UserModded userDetails = (UserModded) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<User> user = userRepository.findByUserLogin(userLoginRepository.findByUserName(userDetails.getUsername()).get());
+        return user.get().getRoles();
+    }
+
     public boolean upgradeAccount(Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isEmpty()) {

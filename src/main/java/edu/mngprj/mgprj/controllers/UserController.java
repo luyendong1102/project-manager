@@ -88,4 +88,13 @@ public class UserController {
         );
     }
 
+    @GetMapping("/role")
+    public ResponseEntity<ResponseTemplate> getRole() {
+        return ResponseEntity.ok(
+                new ResponseTemplate(
+                        200, "Your account has roles", userService.getRoles()
+                )
+        );
+    }
+
 }
