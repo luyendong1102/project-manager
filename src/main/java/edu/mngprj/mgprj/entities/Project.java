@@ -32,7 +32,7 @@ public class Project implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     @ToString.Exclude
-    @JsonManagedReference
+    @JsonBackReference
     private Set<Task> tasks;
 
 }

@@ -17,6 +17,7 @@ public class TaskDetailController {
     @Autowired
     private TaskDetailsSerivce taskDetailsSerivce;
 
+    // tao moi commit
     @PostMapping("/create/{taskid}")
     public ResponseEntity<ResponseTemplate> createCommit(@PathVariable Long taskid, @RequestBody TaskDetail commit) throws NotFoundException, NotValidUserException {
         return ResponseEntity.ok(
@@ -24,6 +25,7 @@ public class TaskDetailController {
         );
     }
 
+    // xem commit cua minh
     @GetMapping("/yourcommit/{taskid}")
     public ResponseEntity<ResponseTemplate> getallcommit(@PathVariable Long taskid) throws NotFoundException, NotValidUserException {
         return ResponseEntity.ok(
@@ -31,6 +33,7 @@ public class TaskDetailController {
         );
     }
 
+    // xem commit task minh quan ly
     @Secured("ROLE_QUANLY")
     @GetMapping("/taskcommit/{taskid}")
     public ResponseEntity<ResponseTemplate> getCommitFromTask(@PathVariable Long taskid) throws NotFoundException {

@@ -38,7 +38,7 @@ public class Task implements Serializable {
     @ManyToOne
     @JoinColumn(name = "projectid", referencedColumnName = "id")
 //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @JsonBackReference
+    @JsonManagedReference
     private Project project;
 
     @ManyToMany(mappedBy = "tasks")

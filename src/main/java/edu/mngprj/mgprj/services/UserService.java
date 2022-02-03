@@ -63,6 +63,7 @@ public class UserService {
         return user.get().getRoles();
     }
 
+    @Transactional
     public boolean upgradeAccount(Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isEmpty()) {
@@ -101,6 +102,8 @@ public class UserService {
         uuser.set_enable(false);
         return userRepository.save(uuser);
     }
+
+
 
     public List<User> findUser(String input) {
         return userRepository.findUserByString(input);
