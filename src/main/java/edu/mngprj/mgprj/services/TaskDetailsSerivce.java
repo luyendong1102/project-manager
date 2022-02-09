@@ -10,6 +10,7 @@ import edu.mngprj.mgprj.repositories.TaskDetailsRepository;
 import edu.mngprj.mgprj.repositories.TaskRepository;
 import edu.mngprj.mgprj.repositories.UserLoginRepository;
 import edu.mngprj.mgprj.repositories.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class TaskDetailsSerivce {
 
     @Autowired
@@ -83,6 +85,7 @@ public class TaskDetailsSerivce {
     public List<TaskDetail> getCommitByTaskID(Long taskid) throws NotFoundException {
         Optional<Task> task = taskRepository.findById(taskid);
         if (task.isEmpty()) {
+            log.error("Task not found");
             throw new NotFoundException();
         }
         return taskDetailsRepository.findByTask(task.get());
