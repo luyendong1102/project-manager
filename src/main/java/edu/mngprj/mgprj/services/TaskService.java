@@ -86,14 +86,14 @@ public class TaskService {
         if (task.isEmpty()) {
             throw new NotFoundException();
         }
-        if (getCurrentUser().getProjects().stream()
-                .noneMatch(
-                        project -> {
-                            return project.getId().equals(task.get().getProject().getId());
-                        }
-                )) {
-            throw new NotValidUserException();
-        }
+//        if (getCurrentUser().getProjects().stream()
+//                .noneMatch(
+//                        project -> {
+//                            return project.getId().equals(task.get().getProject().getId());
+//                        }
+//                )) {
+//            throw new NotValidUserException();
+//        }
         return taskRepository.save(updateTask);
     }
 
