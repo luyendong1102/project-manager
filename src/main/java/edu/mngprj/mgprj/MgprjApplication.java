@@ -1,8 +1,11 @@
 package edu.mngprj.mgprj;
 
+import edu.mngprj.mgprj.entities.Task;
 import edu.mngprj.mgprj.entities.User;
 import edu.mngprj.mgprj.entities.UserLogin;
 import edu.mngprj.mgprj.entities.UserRole;
+import edu.mngprj.mgprj.repositories.ProjectRrepository;
+import edu.mngprj.mgprj.repositories.TaskRepository;
 import edu.mngprj.mgprj.repositories.UserRepository;
 import edu.mngprj.mgprj.repositories.UserRoleRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +17,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 @SpringBootApplication
 @Slf4j
@@ -26,6 +31,10 @@ public class MgprjApplication implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private TaskRepository taskRepository;
+    @Autowired
+    private ProjectRrepository projectRrepository;
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(MgprjApplication.class, args);
@@ -36,6 +45,15 @@ public class MgprjApplication implements CommandLineRunner {
     // it supports mysql, postgress, sqlserver , ...
     @Override
     public void run(String... args) throws Exception {
+/*        Task t = new Task();
+        t.setId(1L);
+        List<User> uss = new ArrayList<>();
+        uss.add(userRepository.findById(1L).get());
+        t.setUsers(uss);
+        t.setTaskDetails(null);
+        t.setProject(projectRrepository.getById(1L));
+        taskRepository.save(t);*/
+
 //        log.info("Project Manager Application Starting Running ... ");
 //        log.info("Hello Developer");
 //        log.info("First time setting");
