@@ -34,7 +34,6 @@ public class TaskDetailController {
     }
 
     // xem commit task minh quan ly
-    @Secured("ROLE_QUANLY")
     @GetMapping("/taskcommit/{taskid}")
     public ResponseEntity<ResponseTemplate> getCommitFromTask(@PathVariable Long taskid) throws NotFoundException {
         return ResponseEntity.ok(
