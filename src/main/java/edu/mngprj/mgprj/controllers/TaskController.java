@@ -29,8 +29,9 @@ public class TaskController {
     @Secured("ROLE_QUANLY")
     @PutMapping
     public ResponseEntity<ResponseTemplate> updateTask(@RequestBody Task updateTask) throws NotFoundException, NotValidUserException {
+        taskService.updateTask(updateTask);
         return ResponseEntity.ok(
-                new ResponseTemplate(200, "Updated", taskService.updateTask(updateTask))
+                new ResponseTemplate(200, "Updated", "")
         );
     }
 

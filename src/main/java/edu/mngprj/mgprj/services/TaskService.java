@@ -12,6 +12,7 @@ import edu.mngprj.mgprj.repositories.UserLoginRepository;
 import edu.mngprj.mgprj.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,7 +82,8 @@ public class TaskService {
     }
 
     @Transactional
-    public Task updateTask(Task updateTask) throws NotFoundException, NotValidUserException {
+    @Modifying
+    public void updateTask(Task updateTask) throws NotFoundException, NotValidUserException {
         Optional<Task> task = taskRepository.findById(updateTask.getId());
         if (task.isEmpty()) {
             throw new NotFoundException();
@@ -94,7 +96,7 @@ public class TaskService {
 //                )) {
 //            throw new NotValidUserException();
 //        }
-        return taskRepository.save(updateTask);
+        taskRepository.updateTask(updateTask.getName(), updateTask.getDescription(), updateTask.getDeadline(), updateTask.getId());
     }
 
     public List<Task> getAllTaskInProject(Long id) throws NotValidUserException, NotFoundException {
